@@ -13,7 +13,21 @@ class Product {
 }
 
 class productItem {
-  render() {}
+  render() {
+    const prodEl = document.createElement("li");
+    prodEl.innerHTML = `
+    <div>
+    <img src = "${this.product.imageUrl}" alt = "${this.product.title}">
+    <div class = "product-item__content">
+    <h2>${this.product.title}</h2>
+    <h3>\$${this.product.price}</h3>
+    <p>${this.product.description}</p>
+    <button>Add to Cart</button>
+    </div>
+    </div>
+    
+    `;
+  }
 }
 
 class productList {
@@ -34,5 +48,11 @@ class productList {
 
   constructor() {}
 
-  render() {}
+  render() {
+    const renderHook = document.getElementById("app");
+    const prodList = document.createElement("ul");
+    prodList.className = "product-list";
+    for (const prod of this.Products) {
+    }
+  }
 }
