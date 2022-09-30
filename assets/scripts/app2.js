@@ -13,20 +13,25 @@ class Product {
 }
 
 class productItem {
-  render() {
+  constructor(product) {
+    this.product_Item = product;
+  }
+  renderItem() {
     const prodEl = document.createElement("li");
+    prodEl.className = "product-item";
     prodEl.innerHTML = `
     <div>
-    <img src = "${this.product.imageUrl}" alt = "${this.product.title}">
+    <img src = "${this.product_Item.imageUrl}" alt = "${this.product_Item.title}">
     <div class = "product-item__content">
-    <h2>${this.product.title}</h2>
-    <h3>\$${this.product.price}</h3>
-    <p>${this.product.description}</p>
+    <h2>${this.product_Item.title}</h2>
+    <h3>\$${this.product_Item.price}</h3>
+    <p>${this.product_Item.description}</p>
     <button>Add to Cart</button>
     </div>
     </div>
     
     `;
+    return prodEl;
   }
 }
 
@@ -53,6 +58,15 @@ class productList {
     const prodList = document.createElement("ul");
     prodList.className = "product-list";
     for (const prod of this.Products) {
+      const ProductItem = new productItem(prod);
+      const prodEl = ProductItem.renderItem();
+
+      prodList.append(prodEl);
     }
+
+    renderHook.append(prodList);
   }
 }
+
+const ProductList = new productList();
+ProductList.render();
